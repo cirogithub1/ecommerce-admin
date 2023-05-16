@@ -1,0 +1,35 @@
+Build a Fullstack E-commerce using Next.js (react.js, mongo, tailwind, styled components)
+	- https://youtu.be/dTFXufTgfOE
+
+	- Source code: 
+		Admin: https://github.com/dejwid/ecommerce-admin
+		Front: https://github.com/dejwid/ecommerce-front
+
+	14:00		NextAuth
+	15:00		Google Cloud Oauth settings
+	21:00		MongoDB auth
+	
+	47:24 	config Images from next/image in file next.config.js
+	01:03:20 	yarn add axios
+	01:07:05 	yarn add mongoose
+	01:12:57 	create mongoose connection
+	02:05:00 	configure upload Images
+						yarn add multiparty
+	02:18:40 	extra headers for axios POST commands
+	02:20:00 	Create a bucket in AWS Amazon
+	02:28:50 	define a client for the AWS bucket 
+						yarn add @aws-sdk/client-s3
+	02:53:59	yarn add react-spinners
+	02:57:32	yarn add react-sortablejs sortablejs
+						yarn add -D @types/sortablejs
+	03:03:11	adding Categories
+	03:34:25	parent Category (populate)
+	03:48:12	yarn add react-sweetalert2
+						Docs: https://sweetalert2.github.io/
+	04:01:00	relation Product to Category
+	04:57:12	add properties to the Product
+	05:15:29	singOut and getServerSession()
+						axios HTTP formats: https://jasonwatmore.com/post/2021/08/24/axios-http-put-request-examples
+	06:30:15	developping the with Frontend
+	07:34:32	adding property date to Schema
+	10:03:43	Mark
