@@ -6,8 +6,8 @@ import mime from 'mime-types'
 
 import { isAdminRequest } from '../../pages/api/auth/[...nextauth]'
 
-const s3AccessKeyId:any = process.env.S3_ACCESS_KEY
-const s3SecretAccessKey:any = process.env.S3_SECRET_ACCESS_KEY
+const s3AccessCleId:any = process.env.S3_ACCESS_CLE
+const s3CaletaAccessCle:any = process.env.S3_CALETA_ACCESS_CLE
 const bucketName:any = process.env.S3_BUCKET_NAME
 
 export default async function handler(
@@ -15,7 +15,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
 
-	const isAdmin = await isAdminRequest(req, res) 
+	const isAdmin:any = await isAdminRequest(req, res) 
   if (isAdmin === 0) {
     throw 'not an admin'
   }
@@ -40,8 +40,8 @@ export default async function handler(
 const client = new S3Client({
 	region: 'eu-north-1',
 	credentials: {
-		accessKeyId: s3AccessKeyId,
-		secretAccessKey: s3SecretAccessKey,
+		accessKeyId: s3AccessCleId,
+		secretAccessKey: s3CaletaAccessCle,
 	}
 })
 

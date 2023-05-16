@@ -5,7 +5,7 @@ import { mongooseConnect } from '@/lib/mongoose.js'
 import { isAdminRequest } from '../../pages/api/auth/[...nextauth]'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const isAdmin = await isAdminRequest(req, res) 
+  const isAdmin:any = await isAdminRequest(req, res) 
   if (isAdmin === 0) {
     throw 'not an admin'
   }
