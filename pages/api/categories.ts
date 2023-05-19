@@ -1,23 +1,22 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
+import connectMongo from '@/database/mongooseCon'
+import { isAdminRequest } from '../../pages/api/auth/[...nextauth]'
 import { Category } from '@/models/Category'
 
-import { mongooseConnect } from '@/lib/mongoose.js'
-import { isAdminRequest } from '../../pages/api/auth/[...nextauth]'
-
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const isAdmin:any = await isAdminRequest(req, res) 
-  if (isAdmin === 0) {
-    throw 'not an admin'
-  }
+  // const isAdmin:any = await isAdminRequest(req, res) 
+  // if (isAdmin === 0) {
+  //   throw 'not an admin'
+  // }
+  await isAdminRequest(req, res) 
 
   const { method } = req
   // console.log("/api/categories: method =", method)
   
-  await mongooseConnect()
+  await connectMongo()
 
 	if (method === 'GET') {
 		const categories:any = await Category.find().populate('parent')
-    
 		res.json(categories)
 	}
 

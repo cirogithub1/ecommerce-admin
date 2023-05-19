@@ -2,7 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { Product } from '@/models/Product'
 
-import { mongooseConnect } from '@/lib/mongoose.js'
+import connectMongo from '@/database/mongooseCon'
 import { isAdminRequest } from '../../pages/api/auth/[...nextauth]'
   
 type Data = {
@@ -16,17 +16,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  
-  // const isAdmin = await isAdminRequest(req, res) 
-  // if (isAdmin === 0) {
-  //   throw 'not an admin'
-  // }
   await isAdminRequest(req, res)
   
   const { method } = req
   console.log("/api/products: method =", method)
   
-  await mongooseConnect()
+  await connectMongo()
   
   // console.log("req.query.id =", req.query.id)      
   if (method === "GET") {

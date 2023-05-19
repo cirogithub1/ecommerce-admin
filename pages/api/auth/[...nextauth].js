@@ -1,49 +1,61 @@
 import NextAuth from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
-
-import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
-import clientPromise from "@/lib/mongodb"
-
+import CredentialsProvider from "next-auth/providers/credentials"
+import { compare } from "bcryptjs"
 import { getServerSession } from 'next-auth'
+
+import connectMongo from '@/database/mongooseCon'
+import User from '@/models/User'
 
 export const authOptions = {
   // Configure one or more authentication providers
   providers: [
     GithubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_CALETA,
+      clientId: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_CALETA,
     }),
 		GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_CALET,
-		})
+			clientId: process.env.GOOGLE_ID,
+			clientSecret: process.env.GOOGLE_CALETA
+		}),
+    CredentialsProvider({
+      name: "credentials",
+      async authorize(credentials) {
+        connectMongo().catch((error) => {error:"Connection to Mongo failed...!"})
+
+        // search in Mongo for the user
+        const user = await User.findOne({email:credentials.email})
+        if (!user) {throw new Error("No user found...")}
+        const checkPwd = await compare(credentials.password, user.password)
+        if (!checkPwd || user.email !== credentials.email) {
+          console.log("User doesn't match..., checkPwd =", checkPwd)
+          throw new Error("User doesn't match...")
+        }
+        return user
+      }
+    })
     // ...add more providers here
   ],
-	adapter: MongoDBAdapter(clientPromise),
-  callbacks: {
-    session: ({session, user, trigger}) => {
-      // console.log({session, user, trigger})
-      if (process.env.ADMINEMAILS.includes(session?.user?.email)) {
-        return session
-      }
-    },
-    jwt({token, user}) {
-      return {...token, ...user}
-    }
-  }
+  //in the command line: openssl rand -base64 32
+  secret: process.env.NEXTAUTH_CALETA,
+  pages: {
+    signIn: "/login",
+  },
 }
+
 export default NextAuth(authOptions)
 
 export async function isAdminRequest(req, res) {
   // check the username from external client not logged
   const { headers } = await req
   console.log("/api/auth/[...next] req =", headers?.authorization)
-  if (!process.env.ADMINEMAILS.includes(headers?.authorization) && headers?.authorization ==! process.env.CREDENTIAL) {
+  if (!process.env.ADMINEMAILS.includes(headers?.authorization) && headers?.authorization !== process.env.CREDENTIAL) {
     res.status(401)
     // res.end()
-    throw 'not an admin'
+    // throw 'not an admin'
     // return 0
+    // redirect(`/login`)
   }
 
   // user from internal client url logged
@@ -51,8 +63,8 @@ export async function isAdminRequest(req, res) {
   if (!process.env.ADMINEMAILS.includes(session?.user?.email)) {
     res.status(401)
     // res.end()
-    throw 'not an admin'
+    // throw 'not an admin'
     // return 0
+    // redirect(`/login`)
   }
-
 }

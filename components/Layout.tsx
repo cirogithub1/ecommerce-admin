@@ -1,12 +1,8 @@
 import { useSession, signIn } from "next-auth/react"
-import { Inter } from 'next/font/google'
 
 import SideBar from '../components/SideBar'
 import { useState } from "react"
 import Logo from "./Logo"
-
-const inter = Inter({ subsets: ['latin'] })
-// h2 className={`${inter.className} mb-3 text-2xl font-semibold`}
 
 const hambIcon =
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
@@ -30,7 +26,7 @@ export default function Layout({ children } : { children:any }) {
           </div>
         </div>
 
-        <div className={`SignedIn ${inter.className} flex`}>
+        <div className={`SignedIn flex`}>
           <SideBar showNav={showNav} />
 
           <div className={`Title flex-grow p-4`}>
@@ -41,7 +37,7 @@ export default function Layout({ children } : { children:any }) {
     )
   }
   return (
-    <div className={`Wrapper ${inter.className} bg-gray-900 w-screen h-screen flex items-center`}>
+    <div className={`Wrapper bg-gray-900 w-screen h-screen flex items-center`}>
       <div className="text-center w-full">
         <button 
           className="bg-white py-2 px-4 text-black rounded-md"

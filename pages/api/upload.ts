@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import multiparty from "multiparty"
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
 import fs from 'fs'
+// @ts-ignore
 import mime from 'mime-types'
 
 import { isAdminRequest } from '../../pages/api/auth/[...nextauth]'
@@ -15,11 +16,11 @@ export default async function handler(
   res: NextApiResponse
 ) {
 
-	const isAdmin:any = await isAdminRequest(req, res) 
-  if (isAdmin === 0) {
-    throw 'not an admin'
-  }
-
+	// const isAdmin:any = await isAdminRequest(req, res) 
+  // if (isAdmin === 0) {
+  //   throw 'not an admin'
+  // }
+	await isAdminRequest(req, res) 
 	console.log("Im in uploads ===================")
 	
 	const form = new multiparty.Form()

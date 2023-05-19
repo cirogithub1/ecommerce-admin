@@ -9,7 +9,6 @@ if (!process.env.MONGODB_URI) {
 declare global {
   var _mongoClientPromise: any
 }
-
 const uri = process.env.MONGODB_URI
 const options = {}
 
