@@ -118,8 +118,8 @@ export default function Login() {
 								Sign in with Google   
 								<Image 
 									src={'/google-icon-logo-svgrepo-com.svg'} 
-									width='25' 
-									height='25' 
+									width='23' 
+									height='23' 
 									alt='google-icon-logo-svgrepo-com.svg'>
 								</Image>
 						</button>
