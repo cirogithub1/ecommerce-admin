@@ -54,7 +54,7 @@ export async function isAdminRequest(req, res) {
     res.status(401)
     // res.end()
     // throw 'not an admin'
-    // return 0
+    return false
     // redirect(`/login`)
   }
 
@@ -64,7 +64,7 @@ export async function isAdminRequest(req, res) {
     res.status(401)
     // res.end()
     // throw 'not an admin'
-    // return 0
+    return false
     // redirect(`/login`)
   }
 }
