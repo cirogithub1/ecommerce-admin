@@ -53,8 +53,8 @@ export async function isAdminRequest(req, res) {
   if (!process.env.ADMINEMAILS.includes(headers?.authorization) && headers?.authorization !== process.env.CREDENTIAL) {
     res.status(401)
     // res.end()
-    // throw 'not an admin'
-    return false
+    throw 'Not an admin trying access'
+    // return false
     // redirect(`/login`)
   }
 
@@ -63,8 +63,8 @@ export async function isAdminRequest(req, res) {
   if (!process.env.ADMINEMAILS.includes(session?.user?.email)) {
     res.status(401)
     // res.end()
-    // throw 'not an admin'
-    return false
+    throw 'Not an admin trying access'
+    // return false
     // redirect(`/login`)
   }
 }

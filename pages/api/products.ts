@@ -16,7 +16,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  await isAdminRequest(req, res)
+  await isAdminRequest(req, res) 
+  // const isAdmin = await isAdminRequest(req, res)
+  // if (!isAdmin) {
+  //   res.status(401).json({message:"Unauthorized"})
+  //   return
+  // }
   
   const { method } = req
   console.log("/api/products: method =", method)
