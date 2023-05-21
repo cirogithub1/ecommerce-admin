@@ -49,13 +49,13 @@ export default NextAuth(authOptions)
 export async function isAdminRequest(req, res) {
   // check the username from external client not logged
   const { headers } = await req
-  console.log("/api/auth/[...next] req =", headers?.authorization)
-  if (!process.env.ADMINEMAILS.includes(headers?.authorization) && headers?.authorization !== process.env.CREDENTIAL) {
+  // console.log("/api/auth/[...next] req =", headers)
+  if (!process.env.ADMINEMAILS.includes(headers?.authorization) || headers?.credentials !== process.env.NEXT_PUBLIC_CREDENTIAL) {
     res.status(401)
     // res.end()
-    throw 'Not an admin trying access'
+    throw 'Not logged, please go to /login'
     // return false
-    // redirect(`/login`)
+    // return res.redirect(307,`/login`)
   }
 
   // user from internal client url logged
@@ -65,6 +65,6 @@ export async function isAdminRequest(req, res) {
     // res.end()
     throw 'Not an admin trying access'
     // return false
-    // redirect(`/login`)
+    // return res.redirect(307,`/login`)
   }
 }

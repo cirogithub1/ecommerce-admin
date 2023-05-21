@@ -51,7 +51,8 @@ function Categories({ swal }:any) {
 			method: 'put',
 			url: '/api/categories',
 			headers: {
-				'Authorization': `${session?.user?.email}`
+				'Authorization': `${session?.user?.email}`,
+				'Credentials': process.env.NEXT_PUBLIC_CREDENTIAL
 			},
 			data})
 			
@@ -71,7 +72,8 @@ function Categories({ swal }:any) {
 				method: 'post',
 				url: '/api/categories',
 				headers: {
-					'Authorization': `${session?.user?.email}`
+					'Authorization': `${session?.user?.email}`,
+					'Credentials': process.env.NEXT_PUBLIC_CREDENTIAL
 				},
 				data})
 		}
@@ -120,7 +122,8 @@ function Categories({ swal }:any) {
 					method: 'delete',
 					url: '/api/categories?id=' + _id,
 					headers: {
-						'Authorization': `${session?.user?.email}`
+						'Authorization': `${session?.user?.email}`,
+						'Credentials': process.env.NEXT_PUBLIC_CREDENTIAL
 					}})
 				fetchCategories()
 			}
@@ -168,7 +171,8 @@ function Categories({ swal }:any) {
 			method: 'get',
 			url: '/api/categories',
 			headers: {
-				'Authorization': `${session?.user?.email}`
+				'Authorization': `${session?.user?.email}`,
+				'Credentials': process.env.NEXT_PUBLIC_CREDENTIAL
 			}})
 			.then(res => {
 				setCategories(res.data)

@@ -15,7 +15,9 @@ export default function OrdersPage() {
 				method: 'get',
 				url: "/api/orders",
 				headers: {
-					'Authorization': `${session?.user?.email}`}
+					'Authorization': `${session?.user?.email}`,
+					'Credentials': process.env.NEXT_PUBLIC_CREDENTIAL
+				}
 			})
 			.then(resp => {
 				console.log(resp.data)
@@ -66,9 +68,9 @@ export default function OrdersPage() {
 
 										<td>
 											{order.line_items.map((item:any) => (
-												<>
+												<div key={item._id}>
 													{item.price_data.product_data.name} x {item.quantity} <br/>
-												</>
+												</div>
 											))}
 										</td>
 
