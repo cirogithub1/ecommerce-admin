@@ -38,10 +38,11 @@ export const authOptions = {
     // ...add more providers here
   ],
   //in the command line: openssl rand -base64 32
-  secret: process.env.NEXTAUTH_CALETA,
-  pages: {
-    signIn: "/login",
-  },
+  secret: process.env.NEXTAUTH_SECRET,
+  // Not necessary for NextAuth.js v.2.5.X
+  // pages: {
+  //   signIn: "/",
+  // },
 }
 
 export default NextAuth(authOptions)
