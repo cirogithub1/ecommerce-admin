@@ -47,10 +47,10 @@ export default function OrdersPage() {
 				?
 					<tbody>
 						{orders.map((order: any) => (
-							<>
+							<div key={order._id}>
 								{order.email
 								?
-									<tr key={order._id}>
+									<tr  key={order._id}>
 										<td>
 											{new Date(order.createdAt).toLocaleString()}
 											{/* {order.createdAt.split('T')[0]} / {order.createdAt.split('T')[1].split('.')[0]} */}
@@ -76,7 +76,7 @@ export default function OrdersPage() {
 
 									</tr>
 								: ""}
-							</>
+							</div>
 						))}
 					</tbody>
 				: ""}

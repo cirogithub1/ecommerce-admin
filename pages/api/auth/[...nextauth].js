@@ -39,6 +39,13 @@ export const authOptions = {
   ],
   //in the command line: openssl rand -base64 32
   secret: process.env.NEXTAUTH_SECRET,
+  // adding a role
+  callbacks: {
+    async jwt({ token }) {
+      token.role = 'admin'
+      return token
+    }
+  }
   // Not necessary for NextAuth.js v.2.5.X
   // pages: {
   //   signIn: "/",
