@@ -52,13 +52,14 @@ export default function Login() {
 			<Head>
 				<title>Login</title>
 			</Head>
-			<section className="w-3/4 mx-auto flex flex-col gap-10 pb-4">
-				<div className="title">
+			<section className="w-3/4 mx-auto flex flex-col gap-5 pb-4">
+				<div className="title ">
 					<h1 className="text-gray-800 text-4xl font-bold py-2">
 						e-commerce
 					</h1>
-					<p className="w-3/4 mx-auto text-gray-400 text-base">
-						You are attempting to Log in to your e-commerce account <br />
+					<p className="w-3/4 mx-auto text-gray-400 text-sm">
+						You are attempting to Log in to <br />
+						your e-commerce account <br />
 						Please enter your credentials <br />
 						Keep your credentials always safe
 					</p>

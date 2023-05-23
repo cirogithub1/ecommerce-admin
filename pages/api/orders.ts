@@ -5,14 +5,14 @@ import { isAdminRequest } from '../../pages/api/auth/[...nextauth]'
 
 export default async function handler(
 	req: NextApiRequest,
-	res: NextApiResponse
-) 
-{
-	await isAdminRequest(req, res)
+	res: NextApiResponse 
+) {
+	// await isAdminRequest(req, res)
 	
 	await connectMongo()
-
-	const orders = await Order.find({}).sort({ createdAt: -1 })
-
-	res.status(200).json(orders)
+	const { method } = req
+	if (method === 'GET') {
+		const orders = await Order.find({}).sort({ createdAt: -1 })
+		res.json(orders)
+	}
 }

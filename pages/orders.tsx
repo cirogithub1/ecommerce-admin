@@ -39,7 +39,6 @@ export default function OrdersPage() {
 						<th>STATUS</th>
 						<th>RECIPIENT</th>
 						<th>PRODUCTS</th>
-
 					</tr>
 				</thead>
 
@@ -47,23 +46,23 @@ export default function OrdersPage() {
 				?
 					<tbody>
 						{orders.map((order: any) => (
-							<div key={order._id}>
+						<tr>
 								{order.email
 								?
-									<tr  key={order._id}>
+									<>
 										<td>
 											{new Date(order.createdAt).toLocaleString()}
 											{/* {order.createdAt.split('T')[0]} / {order.createdAt.split('T')[1].split('.')[0]} */}
 										</td>
 
-										<td className={`Status ${order.paid ? 'text-green-500' : 'text-red-500'}`}>
+										<td className={`Status flex-col text-center mx-auto ${order.paid ? 'text-green-500' : 'text-red-500'}`}>
 											{order.paid ? 'Paid' : 'Not paid'}
 										</td>
 
 										<td>
-											{order.name}{order.email}<br/>
-											{order.address}{order.city}{order.poBox}<br/>
-											{order.country}
+											{order.name} / {order.email}<br/>
+											{order.address} / {order.city}<br/>
+											{order.poBox} / {order.country}
 										</td>
 
 										<td>
@@ -73,10 +72,10 @@ export default function OrdersPage() {
 												</div>
 											))}
 										</td>
+									</>
 
-									</tr>
 								: ""}
-							</div>
+							</tr>
 						))}
 					</tbody>
 				: ""}

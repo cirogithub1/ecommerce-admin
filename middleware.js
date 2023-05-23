@@ -15,7 +15,7 @@ export default withAuth(
 			req.nextUrl.pathname === "/orders" &&
 			req.nextauth.token?.role !== "admin"
 		) {
-			// return NextResponse.redirect("/admin")
+			// return NextResponse.redirect("http://localhost:3000/login")
 			return new NextResponse("You are not authorized to view this page")
 		}		
   },

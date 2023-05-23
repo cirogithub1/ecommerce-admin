@@ -104,7 +104,8 @@ function ProductForm({
 					method: 'post',
 					url: `/api/products`,
 					headers: {
-						'Authorization': `${session?.user?.email}`
+						'Authorization': `${session?.user?.email}`,
+						'Credentials': process.env.NEXT_PUBLIC_CREDENTIAL
 					},
 					data
 				})
@@ -118,7 +119,8 @@ function ProductForm({
 					method: 'put',
 					url: `/api/products`,
 					headers: {
-						'Authorization': `${session?.user?.email}`
+						'Authorization': `${session?.user?.email}`,
+						'Credentials': process.env.NEXT_PUBLIC_CREDENTIAL
 					},
 					data: {...data, _id}
 				})
@@ -132,7 +134,8 @@ function ProductForm({
 					method: 'delete',
 					url: `/api/products?id=${_id}`,
 					headers: {
-						'Authorization': `${session?.user?.email}`
+						'Authorization': `${session?.user?.email}`,
+						'Credentials': process.env.NEXT_PUBLIC_CREDENTIAL
 					}
 				})
 				// .then(resp => {
@@ -186,9 +189,19 @@ function ProductForm({
 
 	useEffect(() => {
 		async	function getCategories() {
-			await axios.get('/api/categories').then((res:any) => {
-				setCategoryList(res.data)
-			})
+			await axios({
+				method: 'get',
+				url: '/api/categories',
+				headers: {
+					'Authorization': `${session?.user?.email}`,
+					'Credentials': process.env.NEXT_PUBLIC_CREDENTIAL
+				}})
+				.then(res => {
+					setCategoryList(res.data)
+			})			
+			// await axios.get('/api/categories').then((res:any) => {
+			// 	setCategoryList(res.data)
+			// })
 		}
 
 		getCategories()
