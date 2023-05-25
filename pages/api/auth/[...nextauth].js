@@ -12,12 +12,12 @@ export const authOptions = {
   // Configure one or more authentication providers
   providers: [
     GithubProvider({
-      clientId: process.env.GITHUB_CLIENT_ID,
-      clientSecret: process.env.GITHUB_CLIENT_CALETA,
+      clientId: process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_GITHUB_CLIENT_CALETA,
     }),
 		GoogleProvider({
-			clientId: process.env.GOOGLE_ID,
-			clientSecret: process.env.GOOGLE_CALETA
+			clientId: process.env.NEXT_PUBLIC_GOOGLE_ID,
+			clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CALETA
 		}),
     CredentialsProvider({
       name: "credentials",

@@ -4,7 +4,7 @@ import Router from "next/router"
 const connectMongo = async () => {
 	try {
 		const { connection } = await mongoose.connect( 
-			process.env.MONGODB_URI
+			process.env.NEXT_PUBLIC_MONGODB_URI
 		)
 
 		// 0 : disconnected, 1 : connected, 2 : connecting, 3 : disconecting 

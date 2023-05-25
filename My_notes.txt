@@ -34,6 +34,10 @@ Build a Fullstack E-commerce using Next.js (react.js, mongo, tailwind, styled co
 	07:34:32	adding property date to Schema
 	10:03:43	Mark
 
-	midleware.js
+
+	NEXT midleware.js
 		Next.js 13 Role Based Authorization with Middleware & NextAuth
 		- https://youtu.be/9bI3ihPg5j0
+
+	AWS Initialize new project
+	- https://docs.amplify.aws/cli/start/workflows/
