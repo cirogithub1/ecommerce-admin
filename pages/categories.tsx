@@ -46,14 +46,14 @@ function Categories({ swal }:any) {
 				_id: editedCategory._id
 			}
 				
-		// console.log({"axios.put ============": data})
-		const res = await axios({
-			method: 'put',
-			url: '/api/categories',
-			headers: {
-				'Authorization': `${session?.user?.email}`,
-				'Credentials': process.env.NEXT_PUBLIC_CREDENTIAL
-			},
+			// console.log({"axios.put ============": data})
+			const res = await axios({
+				method: 'put',
+				url: '/api/categories',
+				headers: {
+					'Authorization': `${session?.user?.email}`,
+					'Credentials': process.env.NEXT_PUBLIC_CREDENTIAL
+				},
 			data})
 			
 		} else {
